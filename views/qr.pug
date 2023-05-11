@@ -1,0 +1,21 @@
+doctype html
+html
+    head
+        script(src='https://code.jquery.com/jquery-3.6.0.min.js')
+        script(src='https://cdn.rawgit.com/jeromeetienne/jquery-qrcode/1.0/jquery.qrcode.min.js')
+    body
+      body
+        if data.status
+          h1 Ok, Ya puedes cerrar esta ventana
+        else
+          div#qr-container.qr-code
+          script.
+            $('#qr-container').qrcode("#{data.qr}");
+          script.
+            function refrescarPagina() {
+              setTimeout(function () {
+                location.reload();
+              }, 10000);
+            }
+            refrescarPagina();
+
