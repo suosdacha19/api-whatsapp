@@ -44,6 +44,11 @@ client.on('authenticated', (session) => {
     console.log('AUTHENTICATED');
 });
 
+client.on('disconnected', (session) => {
+    statusApp = false
+    client.destroy().then(() => client.initialize());
+});
+
 
 client.on('ready', () => {
     statusApp = true
@@ -53,7 +58,6 @@ client.on('ready', () => {
 client.initialize();
 
 global.client = client
-
 
 
 // catch 404 and forward to error handler
