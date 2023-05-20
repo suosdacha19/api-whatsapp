@@ -1,8 +1,21 @@
 module.exports = async ({params: {numero}}) => {
-    const isWaNumber = await client.isRegisteredUser(`57${numero}@c.us`)
-    if (!isWaNumber) {
-        return `404, El numero ${numero} no esta registrado en WhatsApp`
+    if (statusApp) {
+        const isWaNumber = await client.isRegisteredUser(`57${numero}@c.us`)
+        if (!isWaNumber) {
+            return {
+                status: 401,
+                mensaje: `El numero ${numero} no esta registrado en WhatsApp`
+            }
+        } else {
+            return {
+                status: 200,
+                mensaje: "Numero validado correctamente",
+            }
+        }
     } else {
-        return `200, El numero ${numero} esta registrado en WhatsApp`
+        return {
+            status: 401,
+            mensaje: "No se ha podido validar el numero, por favor escanee el codigo QR"
+        }
     }
 }
