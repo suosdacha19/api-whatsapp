@@ -1,7 +1,7 @@
 const usecase = require('../../application/me.usecase');
 module.exports = (req,res,next) => {
     usecase().then((data) => {
-        res.send(data);
+        res.json(data);
     }).catch((err) => {
         next(err);
     });

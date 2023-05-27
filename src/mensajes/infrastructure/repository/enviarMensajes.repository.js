@@ -5,7 +5,7 @@ module.exports = async ({body}) => {
             const isWaNumber = await client.isRegisteredUser(`57${item.number}@c.us`)
             if (!isWaNumber) {
                 return {
-                    status: 401,
+                    status: 500,
                     mensaje: `El numero ${item.number} no esta registrado en WhatsApp`
                 }
             }
@@ -18,7 +18,7 @@ module.exports = async ({body}) => {
         }
     } else {
         return {
-            status: 401,
+            status: 500,
             mensaje: "No se ha podido enviar el mensaje, por favor escanee el codigo QR"
         }
     }
